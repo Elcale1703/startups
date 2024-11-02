@@ -1,6 +1,8 @@
 import { auth, signIn, signOut } from "@/auth"
 import Image from "next/image"
 import Link from "next/link"
+import { BsGoogle } from "react-icons/bs"
+import { BsGithub } from "react-icons/bs"
 
 const Navbar = async () => {
 
@@ -35,13 +37,13 @@ const Navbar = async () => {
                                 "use server";
                                 await signIn('github');
                             }}>
-                                <button type="submit">Login</button>
+                                <button className="flex items-center gap-2" type="submit"><BsGithub />Login</button>
                             </form>
-                            <form onClick={async () => {
+                            <form action={async () => {
                                 "use server";
                                 await signIn('google');
                             }}>
-                                <button type="submit">Login</button>
+                                <button className="flex items-center gap-2" type="submit"><BsGoogle />Login</button>
                             </form>
                         </>
                     )}
