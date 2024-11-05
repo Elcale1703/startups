@@ -8,20 +8,11 @@ import { writeClient } from "./sanity/lib/write-client";
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
     GitHub,
-    Google({
-      authorization: {
-        params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code",
-        },
-      },
-    }),
+    Google,
   ],
   callbacks: {
     async signIn({ user, account, profile }) {
       if (account.provider === "github") {
-        // Lógica para GitHub
         const { name, email, image } = user;
         const { id, login, bio } = profile;
 
@@ -44,11 +35,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         }
         return true;
       } else if (account.provider === "google") {
-        // Lógica específica para Google
-        return profile.email_verified && profile.email.endsWith("@example.com");
+        return profile.email_verified && profile.email.endsWith("@gmail.com");
       }
 
-      return true; // Permitir otros proveedores si se agregan en el futuro
+      return true;
     },
 
     async jwt({ token, account, profile }) {
