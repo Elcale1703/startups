@@ -1,9 +1,11 @@
+import { Heart } from "lucide-react";
 import { defineField, defineType } from "sanity";
 
 export const startup = defineType({
     name: "startup",
     title: "Startup",
     type: "document",
+    icon: Heart,
     fields: [
         defineField({
             name: "title",

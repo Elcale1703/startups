@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { BsGoogle } from "react-icons/bs"
 import { BsGithub } from "react-icons/bs"
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 
 const Navbar = async () => {
 
@@ -35,7 +36,12 @@ const Navbar = async () => {
                                 </button>
                             </form>
                             <Link href={`/user/${session?.id}`}>
-                                <span>{session?.user?.name}</span>
+                                <Avatar className="size-10">
+                                    <AvatarImage src={session?.user?.image || ""} alt={session?.user?.name || ""} />
+                                    <AvatarFallback>
+                                        AV
+                                    </AvatarFallback>
+                                </Avatar>
                             </Link>
                         </>
                     ) : (
